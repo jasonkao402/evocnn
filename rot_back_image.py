@@ -8,12 +8,12 @@ Length:4, Num:11512471, Mean:0.52, Std:0.04,
 '''
 
 import tensorflow as tf
-import tensorflow.contrib.slim as slim
+import tf_slim as slim
 from tensorflow.python.ops import control_flow_ops
 from datetime import datetime
 import numpy as np
 import os
-import get_data as data
+from code import get_data as data
 import tensorflow as tf
 
 batch_size = 100

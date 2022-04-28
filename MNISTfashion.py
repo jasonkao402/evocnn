@@ -1,5 +1,5 @@
 import tensorflow as tf
-import tensorflow.contrib.slim as slim
+import tf_slim as slim
 from tensorflow.python.ops import control_flow_ops
 from datetime import datetime
 import numpy as np
@@ -22,7 +22,7 @@ def model():
                         weights_regularizer=slim.l2_regularizer(0.005),
                         normalizer_params={'is_training': is_training, 'decay': 0.95}
                         ):
-        conv1 =slim.conv2d(x, 88, [12,12], weights_initializer=tf.truncated_normal_initializer(mean=-0.09, stddev=0.01))
+        conv1 = slim.conv2d(x, 88, [12,12], weights_initializer=tf.truncated_normal_initializer(mean=-0.09, stddev=0.01))
         pool1 = slim.max_pool2d(conv1, [4,4], stride=4, padding='SAME')
         flatten = slim.flatten(pool1)
         full1 = slim.fully_connected(flatten, 1157, weights_initializer=tf.truncated_normal_initializer(mean=-0.2327, stddev=0.64162), biases_initializer=tf.constant_initializer(0.1, dtype=tf.float32))
