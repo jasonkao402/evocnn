@@ -9,6 +9,7 @@ def get_general_image(path, name, num):
     data = data[name].astype(np.float32)
     data = np.reshape(data, [num, 28, 28, 1], order='F')
     return data
+
 def get_general_label(path, name):
     label = io.loadmat(path)
     label = label[name]
@@ -16,19 +17,17 @@ def get_general_label(path, name):
     return label
 
 def get_mnist_train_data():
-    train_images_path = '/am/lido/home/yanan/training_data/rectangles_images/train_images.mat'
-    train_label_path = '/am/lido/home/yanan/training_data/rectangles_images/train_label.mat'
+    train_images_path = '/evocnn/training_data/rectangles_images/train_images.mat'
+    train_label_path = '/evocnn/training_data/rectangles_images/train_label.mat'
 
     train_data = get_general_image(train_images_path, 'train_images', 10000)
     train_label = get_general_label(train_label_path, 'train_label')
 
-
     return train_data, train_label
 
-
 def get_mnist_test_data():
-    test_images_path = '/am/lido/home/yanan/training_data/rectangles_images/test_images.mat'
-    test_label_path = '/am/lido/home/yanan/training_data/rectangles_images/test_label.mat'
+    test_images_path = '/evocnn/training_data/rectangles_images/test_images.mat'
+    test_label_path = '/evocnn/training_data/rectangles_images/test_label.mat'
 
 
     test_data = get_general_image(test_images_path, 'test_images', 50000)
@@ -36,39 +35,35 @@ def get_mnist_test_data():
 
     return test_data, test_label
 
-
 def get_mnist_validate_data():
-    validate_images_path = '/am/lido/home/yanan/training_data/rectangles_images/validate_images.mat'
-    validate_label_path = '/am/lido/home/yanan/training_data/rectangles_images/validate_label.mat'
+    validate_images_path = '/evocnn/training_data/rectangles_images/validate_images.mat'
+    validate_label_path = '/evocnn/training_data/rectangles_images/validate_label.mat'
 
     validate_data = get_general_image(validate_images_path, 'validate_images', 2000)
     validate_label = get_general_label(validate_label_path, 'validate_label')
 
     return  validate_data, validate_label
 
-
 def get_standard_train_data(name):
-    data_path = '/am/lido/home/yanan/training_data/back-{}/train_images.npy'.format(name)
-    label_path = '/am/lido/home/yanan/training_data/back-{}/train_label.npy'.format(name)
+    data_path = '/evocnn/training_data/back-{}/train_images.npy'.format(name)
+    label_path = '/evocnn/training_data/back-{}/train_label.npy'.format(name)
     data = np.load(data_path)
     label = np.load(label_path)
     return data, label
 
 def get_standard_validate_data(name):
-    data_path = '/am/lido/home/yanan/training_data/back-{}/validate_images.npy'.format(name)
-    label_path = '/am/lido/home/yanan/training_data/back-{}/validate_label.npy'.format(name)
+    data_path = '/evocnn/training_data/back-{}/validate_images.npy'.format(name)
+    label_path = '/evocnn/training_data/back-{}/validate_label.npy'.format(name)
     data = np.load(data_path)
     label = np.load(label_path)
     return data, label
 
 def get_standard_test_data(name):
-    data_path = '/am/lido/home/yanan/training_data/back-{}/test_images.npy'.format(name)
-    label_path = '/am/lido/home/yanan/training_data/back-{}/test_label.npy'.format(name)
+    data_path = '/evocnn/training_data/back-{}/test_images.npy'.format(name)
+    label_path = '/evocnn/training_data/back-{}/test_label.npy'.format(name)
     data = np.load(data_path)
     label = np.load(label_path)
     return data, label
-
-
 
 def get_train_data(batch_size):
     t_image, t_label = get_mnist_train_data()

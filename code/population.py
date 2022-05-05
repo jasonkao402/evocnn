@@ -20,10 +20,6 @@ class Population:
     def set_populations(self, new_pops):
         self.pops = new_pops
 
-
-
-
-
     def __str__(self):
         _str = []
         for i in range(self.get_pop_size()):

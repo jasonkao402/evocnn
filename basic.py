@@ -1,10 +1,11 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import tf_slim as slim
 from tensorflow.python.ops import control_flow_ops
 from datetime import datetime
 import numpy as np
 import os
-from .code import get_data as data
+from .code import getdata as data
+tf.disable_v2_behavior() 
 '''
 Length:5, Num:1225694, Mean:0.98, Std:0.01,
 conv[7,7,23,0.18,0.87],

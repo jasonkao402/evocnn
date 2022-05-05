@@ -27,7 +27,7 @@ def save_offspring(gen_no, pops):
         pickle.dump(data, file_handler)
 
 def load_save_log_data():
-    file_name = '/am/lido/home/yanan/eclipse-workspace/Ver3/pops.dat'
+    file_name = '/evocnn/training_data/Ver3/pops.dat'
     with open(file_name, 'br') as file_h:
         data = pickle.load(file_h)
         print(data)
@@ -39,6 +39,7 @@ def save_append_individual(indi, file_path):
     with open(file_path, 'a') as myfile:
         myfile.write(indi)
         myfile.write("\n")
+
 def randint(low, high):
     return np.random.random_integers(low, high-1)
 
@@ -53,8 +54,3 @@ def flip(f):
 
 if __name__ =='__main__':
     load_save_log_data()
-
-
-
-
-

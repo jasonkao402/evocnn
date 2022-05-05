@@ -1,8 +1,7 @@
 from population import Population
 from evaluate import Evaluate
 import numpy
-import tensorflow.examples.tutorials.mnist as input_data
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import collections
 from utils import *
 import copy
@@ -353,6 +352,3 @@ if __name__ == '__main__':
     new_p2.mutation()
     print('nnp1->', new_p1)
     print('nnp2->', new_p2)
-
-
-
