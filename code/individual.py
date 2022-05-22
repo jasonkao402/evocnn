@@ -14,7 +14,6 @@ class Individual:
         self.mean = 0
         self.std = 0
         self.complxity = 0
-
         #####################
         self.featur_map_size_range = [3, 50]
         self.filter_size_range = [2, 20]
@@ -53,19 +52,24 @@ class Individual:
 
     def get_layer_size(self):
         return len(self.indi)
+
     def init_mean(self):
         return np.random.random()*(self.mean_range[1] - self.mean_range[0]) + self.mean_range[0]
+
     def init_std(self):
         return np.random.random()*(self.std_range[1] - self.std_range[0]) + self.std_range[0]
 
     def init_feature_size(self):
         return np.random.randint(self.filter_size_range[0], self.filter_size_range[1])
+
     def init_feature_map_size(self):
         return np.random.randint(self.featur_map_size_range[0], self.featur_map_size_range[1])
+
     def init_kernel_size(self):
         kernel_size_num = len(self.pool_kernel_size_range)
         n = np.random.randint(kernel_size_num)
         return np.power(2, self.pool_kernel_size_range[n])
+
     def init_hidden_neuron_size(self):
         return np.random.randint(self.hidden_neurons_range[0], self.hidden_neurons_range[1])
 
@@ -106,10 +110,10 @@ class Individual:
 
 
     def mutation_a_unit(self, unit, eta):
-        if unit.type ==1:
+        if unit.type == 1:
             #mutate a conv layer
             return self.mutate_conv_unit(unit, eta)
-        elif unit.type ==2:
+        elif unit.type == 2:
             #mutate a pool layer
             return self.mutate_pool_unit(unit, eta)
         else:
@@ -153,12 +157,12 @@ class Individual:
         full_layer = FullLayer(hidden_neuron_num=new_n_hidden, weight_matrix=[new_mean, new_std])
         return full_layer
 
-#0 add, 1 modify  2delete
+    # 0 add, 1 modify, 2 delete
 
     def mutation_ope(self, r):
         if r < 0.33:
             return 1
-        elif r >0.66:
+        elif r > 0.66:
             return 2
         else:
             return 0
@@ -168,12 +172,14 @@ class Individual:
         std = self.init_std()
         full_layer = FullLayer(hidden_neuron_num=2, weight_matrix=[mean, std])
         return full_layer
+
     def add_a_random_full_layer(self):
         mean = self.init_mean()
         std = self.init_std()
         hidden_neuron_num = self.init_hidden_neuron_size()
         full_layer = FullLayer(hidden_neuron_num=hidden_neuron_num, weight_matrix=[mean, std])
         return full_layer
+
     def add_a_random_conv_layer(self):
         s1 = self.init_feature_size()
         filter_size=s1,s1
@@ -182,13 +188,13 @@ class Individual:
         std = self.init_std()
         conv_layer = ConvLayer(filter_size=filter_size, feature_map_size=feature_map_size, weight_matrix=[mean, std])
         return conv_layer
+
     def add_a_random_pool_layer(self):
         s1 = self.init_kernel_size()
         kernel_size=s1, s1
         pool_type=np.random.random(size=1)
         pool_layer = PoolLayer(kernel_size=kernel_size, pool_type=pool_type[0])
         return pool_layer
-
 
     def generate_a_new_layer(self, current_unit_type, unit_length):
         if current_unit_type == 3:
@@ -207,8 +213,6 @@ class Individual:
             else:
                 return self.add_a_random_pool_layer()
 
-
-
     def pm(self, xl, xu, x, eta):
         delta_1 = (x - xl) / (xu - xl)
         delta_2 = (xu - x) / (xu - xl)
@@ -226,14 +230,7 @@ class Individual:
         x = min(max(x, xl), xu)
         return x
 
-
-
-
-
-
     def __str__(self):
-
-
         str_ = []
         str_.append('Length:{}, Num:{}'.format(self.get_layer_size(), self.complxity))
         str_.append('Mean:{:.2f}'.format(self.mean))
@@ -254,6 +251,4 @@ class Individual:
 
 if __name__ =='__main__':
     ind = Individual()
-    print(ind.randint(1,10))
-
-
+    print(ind)

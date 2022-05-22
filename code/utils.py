@@ -18,7 +18,7 @@ def load_population():
     path = get_data_path()
     with open(path, 'rb') as file_handler:
         data = pickle.load(file_handler)
-    return data['gen_no'], data['pops'],data['create_time']
+    return data['gen_no'], data['pops'], data['create_time']
 
 def save_offspring(gen_no, pops):
     data = {'gen_no':gen_no, 'pops':pops, 'create_time':strftime("%Y-%m-%d %H:%M:%S", gmtime())}
@@ -47,10 +47,7 @@ def rand():
     return np.random.random()
 
 def flip(f):
-    if rand() <= f:
-        return True
-    else:
-        return False
+    return True if rand() <= f else False
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     load_save_log_data()

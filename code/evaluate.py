@@ -1,4 +1,4 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import tf_slim as slim
 from tensorflow.python.ops import control_flow_ops
 from tensorflow.python.ops import init_ops
@@ -34,7 +34,7 @@ class Evaluate:
     '''
     def parse_population(self, gen_no):
         save_dir = os.getcwd() + '/save_data/gen_{:03d}'.format(gen_no)
-        tf.gfile.MakeDirs(save_dir)
+        tf.io.gfile.makedirs(save_dir)
         history_best_score = 0
         for i in range(self.pops.get_pop_size()):
             indi = self.pops.get_individual_at(i)
@@ -129,10 +129,10 @@ class Evaluate:
                 if update_ops:
                     updates = tf.group(*update_ops)
                     cross_entropy = control_flow_ops.with_dependencies([updates], cross_entropy)
-                #global_step = tf.get_variable("global_step", [], initializer=tf.constant_initializer(0.0), trainable=False)
-                #self.train_data_length//self.batch_size
-#                 lr = tf.train.exponential_decay(0.1, step, 550*30, 0.9, staircase=True)
-#                 optimizer = tf.train.GradientDescentOptimizer(lr)
+                # global_step = tf.get_variable("global_step", [], initializer=tf.constant_initializer(0.0), trainable=False)
+                # self.train_data_length//self.batch_size
+                # lr = tf.train.exponential_decay(0.1, step, 550*30, 0.9, staircase=True)
+                # optimizer = tf.train.GradientDescentOptimizer(lr)
                 optimizer = tf.train.AdamOptimizer()
                 train_op = slim.learning.create_train_op(cross_entropy, optimizer)
             with tf.name_scope('{}_test'.format(name_preffix)):
@@ -207,5 +207,3 @@ class Evaluate:
                 coord.join(threads)
 
             return mean_test_accu, np.std(test_accuracy_list), num_connections, history_best_score
-
-

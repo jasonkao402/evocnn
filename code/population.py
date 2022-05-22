@@ -6,7 +6,7 @@ class Population:
     def __init__(self, num_pops):
         self.num_pops = num_pops
         self.pops = []
-        for i in range(num_pops):
+        for _ in range(num_pops):
             indi = Individual()
             indi.initialize()
             self.pops.append(indi)

@@ -1,0 +1,4 @@
+
+*.amat
+*.pyc
+__pycache__/

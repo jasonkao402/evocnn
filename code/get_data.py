@@ -113,12 +113,6 @@ if __name__ =='__main__':
     print(data.shape, label.shape, data.dtype, label.dtype)
 
 
-
-
-
-
-
-
 # def get_mnist_train_batch(batch_size, capacity=1000):
 #     mnist = input_data.read_data_sets('MNIST_data', reshape=False, one_hot=True)
 #     train_images = tf.cast(mnist.train.images, tf.float32)
